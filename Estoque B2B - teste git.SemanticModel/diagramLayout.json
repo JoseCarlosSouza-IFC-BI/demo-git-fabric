@@ -1,0 +1,236 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 1431.57164058821,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 2360.3213230159904,
+            "y": 1356.489650468287
+          },
+          "nodeIndex": "d_calendar",
+          "nodeLineageTag": "3b4206c6-8d5c-43d9-bc30-3c6a5d13607c",
+          "size": {
+            "height": 290.21171098907939,
+            "width": 234
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 2660.7612217300207,
+            "y": 417.07823012384824
+          },
+          "nodeIndex": "Ultima Atualizacao",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "Medidas",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 2946.8,
+            "y": 0
+          },
+          "nodeIndex": "Eixo X Dimensão",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 3310.6,
+            "y": 0
+          },
+          "nodeIndex": "Filtro Distribution",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 3143.8654576444169,
+            "y": 193.71064452142872
+          },
+          "nodeIndex": "dashboards_url",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 3076.7267438958579,
+            "y": 463.67060544159705
+          },
+          "nodeIndex": "Medidas Produto",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 3686,
+            "y": 0
+          },
+          "nodeIndex": "Parâmetro",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 2016.700990894165,
+            "y": 856.52470107919589
+          },
+          "nodeIndex": "fat_inventory",
+          "nodeLineageTag": "12ead493-8b03-4222-bc34-1dedff154d9e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1466.4443500436346,
+            "y": 971.0305384476
+          },
+          "nodeIndex": "dim_distributors",
+          "nodeLineageTag": "d0f821f6-5b0b-4260-aca7-8a7b213fac15",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 4550.1,
+            "y": 0
+          },
+          "nodeIndex": "dim_access_control",
+          "nodeLineageTag": "6378d01d-fc54-4093-88a0-2fad7d8d9406",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 4925.5,
+            "y": 0
+          },
+          "nodeIndex": "param_ruptura",
+          "nodeLineageTag": "699716db-5e0b-43cd-b487-4e65428bd8f5",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1007.5885744735253,
+            "y": 934.38787661938852
+          },
+          "nodeIndex": "vw_distributor_groups",
+          "nodeLineageTag": "72e4ce92-9470-452f-9541-417e32940309",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 5300.9,
+            "y": 0
+          },
+          "nodeIndex": "Parâmetro_estoque",
+          "nodeLineageTag": "b804e595-8fe2-4d76-a063-aa4873ab8e17",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 2113.31779048314,
+            "y": 1407.4365168019765
+          },
+          "nodeIndex": "dim_abc_curve",
+          "nodeLineageTag": "148ea1c4-9204-48c9-855e-a0ba653d743a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 5584.9,
+            "y": 723.35068072868319
+          },
+          "nodeIndex": "count_tables_log",
+          "nodeLineageTag": "b26db4f9-1151-40dd-96ab-962db09dc74f",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1460.3941717836474,
+            "y": 1356.9715349887749
+          },
+          "nodeIndex": "vw_fat_inventory_wms",
+          "nodeLineageTag": "719dad56-83a2-4b0c-a6e3-d3a95e030c35",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 63.287087723233959,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

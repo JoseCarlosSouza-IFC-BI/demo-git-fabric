@@ -1,0 +1,69 @@
+table 'Eixo X Dimensão'
+	lineageTag: 4a2fbfa0-1781-4641-804b-cfcb81087945
+
+	column Parâmetro
+		lineageTag: be92d45c-4326-4a74-b925-d2b65f1eb41e
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parâmetro Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'Parâmetro Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parâmetro Campos'
+		isHidden
+		lineageTag: e89e1fcf-9d7f-4d74-98a8-945fe54fe35e
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parâmetro Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parâmetro Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: a87b8c90-a7a1-43ee-9f8e-6e89b7a0f302
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Produto/Distribuidor
+		lineageTag: f800efbb-ed3e-4c9a-a058-d0ceb8181883
+		summarizeBy: none
+		sourceColumn: [Value4]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Eixo X Dimensão-8215e41e-b1e0-48c6-993c-b176ba8696a2' = calculated
+		mode: import
+		source =
+				{
+				    ("Categoria produto", NAMEOF('fat_inventory'[category]), 0, "Produto"),
+				    // ("Produto",NAMEOF( 'dim_products'[name]), 1, "Produto"),
+				    ("Subcategoria", NAMEOF('fat_inventory'[sub_category]),2, "Produto"),
+				    //("Classificação ABC", NAMEOF('fat_inventory'[abc_classification]), 3, "Produto"),
+				    ("Familia", NAMEOF('fat_inventory'[family]), 4, "Produto"),
+				    ("Marca",NAMEOF( 'fat_inventory'[brand]), 5, "Produto")
+				    // ("Categoria Loja", NAMEOF('d_distribution_nodes'[category]), 6, "Distribuidor"),
+				    // ("Loja",NAMEOF( 'd_distribution_nodes'[name]), 7, "Distribuidor"),
+				    // ("Segmento", NAMEOF('d_distribution_nodes'[segment]), 8, "Distribuidor"),
+				    // ("Canal", NAMEOF('d_distribution_nodes'[channel]), 9, "Distribuidor"),
+				    // ("Estado", NAMEOF('d_distribution_nodes'[uf]), 10, "Distribuidor"),
+				    // ("Cidade", NAMEOF('d_distribution_nodes'[city]), 11, "Distribuidor"),
+				    // ("Diário", NAMEOF('d_calendar'[id]),6, "Calendario"),
+				    // ("Semanal", NAMEOF('d_calendar'[week_year_unique]), 7, "Calendario"),
+				    // ("Mensal", NAMEOF('d_calendar'[month_year_name]),8, "Calendario")
+				
+				}
+
+	annotation PBI_Id = 442b7b22aad8427aa934de36abbfab82
+

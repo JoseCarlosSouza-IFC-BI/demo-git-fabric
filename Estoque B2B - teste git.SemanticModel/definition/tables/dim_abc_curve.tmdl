@@ -1,0 +1,112 @@
+table dim_abc_curve
+	lineageTag: 148ea1c4-9204-48c9-855e-a0ba653d743a
+
+	column seller_id
+		dataType: string
+		lineageTag: e68d0e18-b587-47ee-9a22-4bd350b5ab4f
+		summarizeBy: none
+		sourceColumn: seller_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_code
+		dataType: string
+		lineageTag: f270d986-46f9-42d6-87e6-a69b9f50271c
+		summarizeBy: none
+		sourceColumn: seller_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_model
+		dataType: string
+		lineageTag: e76a05ae-cc19-43ba-ae94-3989d33e0126
+		summarizeBy: none
+		sourceColumn: business_model
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_code
+		dataType: string
+		lineageTag: 5d10921b-5fd7-4c19-9307-fceb43e1c5c9
+		summarizeBy: none
+		sourceColumn: product_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column manufactory_name
+		dataType: string
+		lineageTag: 6bbe8148-5b5e-4629-94f9-7d0982013182
+		summarizeBy: none
+		sourceColumn: manufactory_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: double
+		lineageTag: 21195cfe-f4ee-4ceb-8560-4174a4afbd5c
+		summarizeBy: sum
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 85ef3ae8-af7a-4b75-a597-5a50e1afc38d
+		summarizeBy: sum
+		sourceColumn: amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column abc_curve
+		dataType: string
+		lineageTag: e1c836f4-8904-4554-b957-757e93121359
+		summarizeBy: none
+		sourceColumn: abc_curve
+
+		annotation SummarizationSetBy = Automatic
+
+	column curve_relationship
+		dataType: string
+		lineageTag: 0c44edea-07f9-4fce-9f11-ed8450da4bd9
+		summarizeBy: none
+		sourceColumn: curve_relationship
+
+		annotation SummarizationSetBy = Automatic
+
+	column time_period
+		dataType: int64
+		formatString: 0
+		lineageTag: e11cbf68-d745-468b-b3a7-2ee9ba44d44d
+		summarizeBy: sum
+		sourceColumn: time_period
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_source
+		dataType: string
+		lineageTag: 1c95a4d2-31f9-4b0f-96fa-e23cddd4f110
+		summarizeBy: none
+		sourceColumn: data_source
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_abc_curve = m
+		mode: import
+		queryGroup: Fact
+		source =
+				let
+				    Fonte = Databricks.Catalogs(#"hostname", #"http_path_marketing_principal", [Catalog=null, Database=null, EnableAutomaticProxyDiscovery=null]),
+				    prd_infracommerce_warehouse_Database = Fonte{[Name=#"ambiente_conexao",Kind="Database"]}[Data],
+				    marketing_context_Schema = prd_infracommerce_warehouse_Database{[Name="marketing_context",Kind="Schema"]}[Data],
+				    dim_abc_curve_Table = marketing_context_Schema{[Name="dim_abc_curve",Kind="Table"]}[Data],
+				    #"Filtro 90 dias" = Table.SelectRows(dim_abc_curve_Table, each ([curve_relationship] = "value") and ([time_period] = 90))
+				in
+				    #"Filtro 90 dias"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

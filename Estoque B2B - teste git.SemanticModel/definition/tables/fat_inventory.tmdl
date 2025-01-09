@@ -1,0 +1,238 @@
+table fat_inventory
+	lineageTag: 12ead493-8b03-4222-bc34-1dedff154d9e
+
+	column product_code
+		dataType: string
+		lineageTag: b33f810b-b9ba-4d9a-bb34-788569829644
+		summarizeBy: none
+		sourceColumn: product_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_model
+		dataType: string
+		lineageTag: 6a132846-0853-4555-b48f-ded1f12c260c
+		summarizeBy: none
+		sourceColumn: business_model
+
+		annotation SummarizationSetBy = Automatic
+
+	column available
+		dataType: double
+		lineageTag: 8decf204-6031-4db2-ad34-8769ef5c75dc
+		summarizeBy: sum
+		sourceColumn: available
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column monthly_average_last_90_days
+		dataType: double
+		lineageTag: 313ecb66-f2c1-44c6-8a04-a6e83dfd8faf
+		summarizeBy: sum
+		sourceColumn: monthly_average_last_90_days
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column inventory_classification
+		dataType: string
+		lineageTag: ea91cb9c-f21d-4609-8abc-56ab2e0e1206
+		summarizeBy: none
+		sourceColumn: inventory_classification
+
+		annotation SummarizationSetBy = Automatic
+
+	column manufacturer_name
+		dataType: string
+		lineageTag: 70ff386b-dc57-4ac9-b7ac-06b395ed6883
+		summarizeBy: none
+		sourceColumn: manufacturer_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column classification_sales_90_days
+		dataType: string
+		lineageTag: 02de01bc-967b-4172-91a2-a4790b681e55
+		summarizeBy: none
+		sourceColumn: classification_sales_90_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column classification_sales_60_days
+		dataType: string
+		lineageTag: efb00691-c9ca-4275-92b9-7294cae8dd9c
+		summarizeBy: none
+		sourceColumn: classification_sales_60_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column classification_sales_30_days
+		dataType: string
+		lineageTag: 0a7df7ba-5262-4e12-a3f6-7cec4e1c9317
+		summarizeBy: none
+		sourceColumn: classification_sales_30_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column coverage_using_last_90_days
+		dataType: int64
+		formatString: 0
+		lineageTag: 2cc1bfc1-b5fa-4acf-80e0-ae36c41abc2b
+		summarizeBy: sum
+		sourceColumn: coverage_using_last_90_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_location_id
+		dataType: string
+		lineageTag: 916b6cac-83ef-4893-8e85-2c5ce91206da
+		summarizeBy: none
+		sourceColumn: source_location_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_integration_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9cc0045d-201d-4d04-ad6c-50ff29bc883d
+		summarizeBy: none
+		sourceColumn: last_integration_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column update_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 91d98a5b-1552-4a20-89c1-9ea05bf70a01
+		summarizeBy: none
+		sourceColumn: update_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column sku
+		dataType: string
+		lineageTag: 3fc24b50-b2d3-41bb-a007-8536f42b0f8e
+		summarizeBy: none
+		sourceColumn: sku
+
+		annotation SummarizationSetBy = Automatic
+
+	column ean
+		dataType: string
+		lineageTag: 3a86128f-9290-4743-92dd-3fe250255532
+		summarizeBy: none
+		sourceColumn: ean
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 8a52c063-878b-4315-8bc4-5d688813b71f
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 21a8dea1-4cd3-4291-a0ad-981aeb5264d3
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_category
+		dataType: string
+		lineageTag: d4b19f25-2b7e-4abd-ba10-8e7a212a8377
+		summarizeBy: none
+		sourceColumn: sub_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column brand
+		dataType: string
+		lineageTag: 758ceb66-70b6-4afb-97b3-77ae080fa500
+		summarizeBy: none
+		sourceColumn: brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column family
+		dataType: string
+		lineageTag: a84ce810-922f-485c-853a-424de929befd
+		summarizeBy: none
+		sourceColumn: family
+
+		annotation SummarizationSetBy = Automatic
+
+	column estoque_maior_zero
+		dataType: string
+		lineageTag: fb80ae7a-9d36-4c80-aaef-d557f5f592d1
+		summarizeBy: none
+		sourceColumn: estoque_maior_zero
+
+		annotation SummarizationSetBy = Automatic
+
+	column sales_last_90_days
+		dataType: double
+		lineageTag: 53ebc370-f8ca-4e51-8d81-03ca35d380a1
+		summarizeBy: sum
+		sourceColumn: sales_last_90_days
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column damaged
+		dataType: double
+		lineageTag: 7f3b0fe7-60db-4a22-ae88-15832866858f
+		summarizeBy: sum
+		sourceColumn: damaged
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column reserved
+		dataType: double
+		lineageTag: 0c29ba42-790c-4b49-b982-0b972caba3b9
+		summarizeBy: sum
+		sourceColumn: reserved
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column daily_average_last_90_days
+		dataType: double
+		lineageTag: eff3bcc0-e4b5-4a78-9707-7b0056a7f200
+		summarizeBy: sum
+		sourceColumn: daily_average_last_90_days
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fat_inventory-dfaed816-ebda-4d38-aed2-db5cdfe57387 = m
+		mode: import
+		queryGroup: Fact
+		source =
+				let
+				    Fonte = Databricks.Catalogs(#"hostname", #"http_path_query_principal", [Catalog=null, Database=null, EnableAutomaticProxyDiscovery=null]),
+				    hive_metastore_Database = Fonte{[Name=#"ambiente_conexao",Kind="Database"]}[Data],
+				    data_intelligence_dev_Schema = hive_metastore_Database{[Name="query_context",Kind="Schema"]}[Data],
+				    f_demand_planning_Table = data_intelligence_dev_Schema{[Name="vw_fat_inventory",Kind="Table"]}[Data],
+				    #"Columns removed by Measure Killer" = Table.SelectColumns(f_demand_planning_Table,{"family","estoque_maior_zero","classification_sales_30_days","brand","classification_sales_60_days","product_code","inventory_classification","ean","update_date","name","classification_sales_90_days","sku","sub_category","available", "damaged", "manufacturer_name", "sales_last_90_days","coverage_using_last_90_days","source_location_id","category","last_integration_date","monthly_average_last_90_days", "daily_average_last_90_days","business_model","reserved"}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Columns removed by Measure Killer", each ([business_model] = "B2B"))
+				in
+				    #"Linhas Filtradas"
+
+	annotation PBI_ResultType = Exception
+
+	annotation PBI_NavigationStepName = Navigation
+

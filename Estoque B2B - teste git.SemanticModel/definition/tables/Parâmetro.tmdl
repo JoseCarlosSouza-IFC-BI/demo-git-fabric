@@ -1,0 +1,49 @@
+table Parâmetro
+	lineageTag: b827a498-4d03-4b8c-8aba-6574627bcb95
+
+	column Parâmetro
+		lineageTag: 9454bfc8-6145-435a-96d7-b1963530d22c
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parâmetro Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'Parâmetro Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parâmetro Campos'
+		isHidden
+		lineageTag: e7e0d49d-d7e0-4e41-98b4-bd2887fcbd82
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parâmetro Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parâmetro Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: fd655adc-c3a0-4591-a557-c474bba6a012
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Parâmetro-f120ed48-578c-4430-b50b-8fce3a849204 = calculated
+		mode: import
+		source =
+				{
+				    ("Categoria", NAMEOF(fat_inventory[category]), 0),
+				    ("Subcategoria", NAMEOF(fat_inventory[sub_category]), 1)
+				    // ("90 dias", NAMEOF(fat_inventory[classification_sales_90_days]), 2)
+				}
+
+	annotation PBI_Id = 5e69655812aa4fe8ab13a2e5181ab942
+

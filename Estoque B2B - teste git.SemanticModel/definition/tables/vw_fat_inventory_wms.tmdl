@@ -1,0 +1,111 @@
+table vw_fat_inventory_wms
+	lineageTag: 719dad56-83a2-4b0c-a6e3-d3a95e030c35
+
+	column product_id
+		dataType: string
+		lineageTag: d55f083d-5f9a-4fbe-b29c-cb23a3a6fd81
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_location_code
+		dataType: string
+		lineageTag: 6506c4a1-ad2e-47ca-aaa4-beefb54acb8f
+		summarizeBy: none
+		sourceColumn: source_location_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_code
+		dataType: string
+		lineageTag: 4d36073f-942a-48ac-a232-75c9899d3bcb
+		summarizeBy: none
+		sourceColumn: product_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_source
+		dataType: string
+		lineageTag: 3840961d-354e-489a-9fb2-c03d551b76a3
+		summarizeBy: none
+		sourceColumn: data_source
+
+		annotation SummarizationSetBy = Automatic
+
+	column damaged
+		dataType: double
+		lineageTag: 24f6b693-1731-4bd0-bc3a-111b601d8a8e
+		summarizeBy: sum
+		sourceColumn: damaged
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column sku
+		dataType: string
+		lineageTag: b93c78df-d116-4385-a42b-4efda827b435
+		summarizeBy: none
+		sourceColumn: sku
+
+		annotation SummarizationSetBy = Automatic
+
+	column ean
+		dataType: string
+		lineageTag: ccc2905e-6a23-4024-a297-6dc5012bc6fb
+		summarizeBy: none
+		sourceColumn: ean
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: d015ea75-0878-4b68-9ff9-e713749c994e
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column brand
+		dataType: string
+		lineageTag: 4bf7346d-0ce0-486e-9cc0-9973f8a2dbeb
+		summarizeBy: none
+		sourceColumn: brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column family
+		dataType: string
+		lineageTag: e8273222-7b09-4385-8955-eded61b596c6
+		summarizeBy: none
+		sourceColumn: family
+
+		annotation SummarizationSetBy = Automatic
+
+	column distributor_company_name
+		dataType: string
+		lineageTag: 57f86338-ae9e-4508-b436-94c0dc3a2882
+		summarizeBy: none
+		sourceColumn: distributor_company_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition vw_fat_inventory_wms = m
+		mode: import
+		queryGroup: Fact
+		source =
+				let
+				    Fonte = Databricks.Catalogs("dbc-afc2aebf-7684.cloud.databricks.com", "/sql/1.0/warehouses/0a0a33212fb9f72e", [Catalog=null, Database=null, EnableAutomaticProxyDiscovery=null]),
+				    prd_05_infracommerce_warehouse_Database = Fonte{[Name="prd_05_infracommerce_warehouse",Kind="Database"]}[Data],
+				    query_context_Schema = prd_05_infracommerce_warehouse_Database{[Name="query_context",Kind="Schema"]}[Data],
+				    vw_fat_inventory_wms_View = query_context_Schema{[Name="vw_fat_inventory_wms",Kind="View"]}[Data],
+				    #"Linhas Filtradas" = Table.SelectRows(vw_fat_inventory_wms_View, each ([business_model] = "B2B")),
+				    #"Outras Colunas Removidas" = Table.SelectColumns(#"Linhas Filtradas",{"product_id", "source_location_code", "product_code", "data_source", "damaged", "sku", "ean", "name", "brand", "family", "distributor_company_name"})
+				in
+				    #"Outras Colunas Removidas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

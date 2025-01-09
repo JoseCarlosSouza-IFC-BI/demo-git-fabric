@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Estoque B2B - teste git"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1b7fa508-e31e-46c6-9b9b-54a175e1541e"
+  }
+}

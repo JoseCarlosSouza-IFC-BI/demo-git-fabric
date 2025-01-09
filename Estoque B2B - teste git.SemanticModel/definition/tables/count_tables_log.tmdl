@@ -1,0 +1,62 @@
+table count_tables_log
+	lineageTag: b26db4f9-1151-40dd-96ab-962db09dc74f
+
+	column database_name
+		dataType: string
+		lineageTag: bff80f9b-3432-4512-a329-ebb62019b32a
+		summarizeBy: none
+		sourceColumn: database_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column table_name
+		dataType: string
+		lineageTag: bf564128-4790-4ca7-8928-7d439befe871
+		summarizeBy: none
+		sourceColumn: table_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column row_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 5dfbd778-861e-4c05-bfda-0c906e43e275
+		summarizeBy: sum
+		sourceColumn: row_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column executed_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f0fb26ec-550e-4954-9368-2a6c1b4e9911
+		summarizeBy: none
+		sourceColumn: executed_at
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_table_execution
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c23af7dc-5af1-4f4c-a213-e1c3f5597d47
+		summarizeBy: none
+		sourceColumn: last_table_execution
+
+		annotation SummarizationSetBy = Automatic
+
+	partition count_tables_log = m
+		mode: import
+		source =
+				let
+				    Fonte = Databricks.Catalogs("dbc-afc2aebf-7684.cloud.databricks.com", "/sql/1.0/warehouses/0a0a33212fb9f72e", [Catalog=null, Database=null, EnableAutomaticProxyDiscovery=null]),
+				    hive_metastore_Database = Fonte{[Name="prd_02_infracommerce_formatted",Kind="Database"]}[Data],
+				    logs_Schema = hive_metastore_Database{[Name="dropzone_context",Kind="Schema"]}[Data],
+				    count_tables_log_Table = logs_Schema{[Name="count_tables_log",Kind="Table"]}[Data],
+				    #"Linhas Filtradas" = Table.SelectRows(count_tables_log_Table, each ([table_name] = "fat_inventory"))
+				in
+				    #"Linhas Filtradas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
