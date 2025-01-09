@@ -218,6 +218,12 @@ table fat_inventory
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	column Coluna_teste_git = "teste git"
+		lineageTag: 626d3a6c-b08d-48b4-be9a-e2787ffbfbed
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition fat_inventory-dfaed816-ebda-4d38-aed2-db5cdfe57387 = m
 		mode: import
 		queryGroup: Fact
