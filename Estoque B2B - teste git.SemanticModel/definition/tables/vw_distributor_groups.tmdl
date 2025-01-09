@@ -1,0 +1,137 @@
+table vw_distributor_groups
+	lineageTag: 72e4ce92-9470-452f-9541-417e32940309
+
+	column tenant
+		dataType: string
+		lineageTag: 50938f65-41a3-4aa7-8a9f-6f7ba2c18495
+		summarizeBy: none
+		sourceColumn: tenant
+
+		annotation SummarizationSetBy = Automatic
+
+	column display_name
+		dataType: string
+		lineageTag: c9712e13-b204-4b6d-b802-5c256f019123
+		summarizeBy: none
+		sourceColumn: display_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_name
+		dataType: string
+		lineageTag: 36d51cb1-c7c3-4b7a-9e9c-b99659267097
+		summarizeBy: none
+		sourceColumn: company_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column distributor_id
+		dataType: string
+		lineageTag: 2d80428e-3a54-447b-a3b3-c55fceee5017
+		summarizeBy: none
+		sourceColumn: distributor_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column group_name
+		dataType: string
+		lineageTag: 2701c1a4-86b9-400d-81d6-5a2798651fe0
+		summarizeBy: none
+		sourceColumn: group_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column group_type
+		dataType: string
+		lineageTag: 396a54a5-f7a3-4d1e-b80b-c0443fdeccab
+		summarizeBy: none
+		sourceColumn: group_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_vertical
+		dataType: int64
+		formatString: 0
+		lineageTag: 30c33072-9057-441e-84b5-8f2e26d87db1
+		summarizeBy: sum
+		sourceColumn: id_vertical
+
+		annotation SummarizationSetBy = Automatic
+
+	column vertical_name
+		dataType: string
+		lineageTag: 9468cd55-2c5a-4b75-8ae2-4d813f4663c9
+		summarizeBy: none
+		sourceColumn: vertical_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_dashboard
+		dataType: int64
+		formatString: 0
+		lineageTag: 9071f78f-5065-4798-9a45-ac2c9780df2c
+		summarizeBy: sum
+		sourceColumn: id_dashboard
+
+		annotation SummarizationSetBy = Automatic
+
+	column dashboard_name
+		dataType: string
+		lineageTag: 89879106-c788-47aa-bf61-b621c78f865f
+		summarizeBy: none
+		sourceColumn: dashboard_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_email
+		dataType: string
+		lineageTag: a76a8ad9-ef78-44c9-94ba-e4951a4e9008
+		summarizeBy: none
+		sourceColumn: user_email
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_type
+		dataType: string
+		lineageTag: 7dc59ea0-85dd-4961-88c1-781f8fa5d338
+		summarizeBy: none
+		sourceColumn: user_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column updated_at
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: cfbec6c5-612d-4d97-8ff3-d36fbb54ed79
+		summarizeBy: none
+		sourceColumn: updated_at
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ticket
+		dataType: string
+		lineageTag: 5cd183c3-f0ae-4fa3-863c-efda98d8957c
+		summarizeBy: none
+		sourceColumn: ticket
+
+		annotation SummarizationSetBy = Automatic
+
+	partition vw_distributor_groups-38b7abf9-8881-4f7b-92c0-fe810c04bd82 = m
+		mode: import
+		queryGroup: Segurança
+		source =
+				let
+				    Fonte = Databricks.Catalogs(#"hostname", #"http_path_user_security_principal", [Catalog=null, Database=null, EnableAutomaticProxyDiscovery=null]),
+				    prd_infracommerce_warehouse_Database = Fonte{[Name=#"ambiente_conexao",Kind="Database"]}[Data],
+				    user_security_context_Schema = prd_infracommerce_warehouse_Database{[Name="user_security_context",Kind="Schema"]}[Data],
+				    vw_distributor_groups_View = user_security_context_Schema{[Name="vw_distributor_groups",Kind="View"]}[Data],
+				    #"Linhas Filtradas" = Table.SelectRows(vw_distributor_groups_View, each ([display_name] <> null))
+				in
+				    #"Linhas Filtradas"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

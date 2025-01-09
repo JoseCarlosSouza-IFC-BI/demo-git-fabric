@@ -1,0 +1,48 @@
+table param_ruptura
+	lineageTag: 699716db-5e0b-43cd-b487-4e65428bd8f5
+
+	column param_ruptura
+		lineageTag: 9199ece6-f477-42d4-978c-4a6fdca0a0aa
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'param_ruptura Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'param_ruptura Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'param_ruptura Campos'
+		isHidden
+		lineageTag: dac9948e-7c20-4716-9560-3816c437a00d
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'param_ruptura Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'param_ruptura Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: 5fe54c91-8086-4d94-ad80-ac228b08f54b
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition param_ruptura-e6edf070-334e-451b-9e20-14a926b7567c = calculated
+		mode: import
+		source =
+				{
+				    ("Risco de ruptura", NAMEOF('Medidas'[risco_ruptura_estoque_%]), 0),
+				    ("Ruptura", NAMEOF('Medidas'[ruptura_estoque_%]), 1)
+				}
+
+	annotation PBI_Id = 421553948c254ddc86e61769fb1e99c5
+

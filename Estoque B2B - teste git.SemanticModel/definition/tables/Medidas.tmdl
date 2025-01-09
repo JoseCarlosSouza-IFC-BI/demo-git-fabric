@@ -1,0 +1,222 @@
+table Medidas
+	lineageTag: 8a658f92-a4a2-4bcd-bb95-0821b3c5d19e
+
+	measure Hoje = today()
+		formatString: General Date
+		displayFolder: Geral
+		lineageTag: 13e6be57-8f83-467b-b5a4-40926dd72667
+
+	measure 'Username Validado' =
+			
+			var usuario      = USERPRINCIPALNAME()
+			var acharHashtag = FIND("#", usuario, 1, 0)
+			var conta_       = len(usuario)-len(SUBSTITUTE(usuario,"_",""))
+			
+			var limpa        = MID(usuario,
+			                     FIND ("#", usuario, 1, 0) + 1,
+			                       LEN (usuario) - acharHashtag)
+			
+			VAR userlimpo = IF(LEFT(limpa,4)="EXT#",
+			                  SUBSTITUTE(LEFT(USERPRINCIPALNAME(), acharHashtag-1), "_","@"), limpa)
+			
+			VAR userFinal = IF(conta_ > 1, SUBSTITUTE(userlimpo,"@","_",1),userlimpo)
+			RETURN
+			userFinal
+		displayFolder: Geral
+		lineageTag: fb19c6d8-6fa8-4afd-955b-e2cfdc61327b
+
+	measure login = UPPER(LEFT(USERPRINCIPALNAME(),2))
+		displayFolder: Geral
+		lineageTag: 6fa23409-d7c3-4c69-9067-dfe443ddb4ed
+
+	measure excesso_estoque = calculate(AVERAGE('fat_inventory'[available]), 'fat_inventory'[inventory_classification] = "cobertura excessiva")
+		formatString: #,0
+		displayFolder: Estoque
+		lineageTag: dacdf5d2-2109-4291-91d3-7a2b2a033247
+
+		changedProperty = FormatString
+
+	measure ruptura_estoque = calculate(DISTINCTCOUNT('fat_inventory'[product_code]), 'fat_inventory'[inventory_classification] = "ruptura")
+		displayFolder: Estoque
+		lineageTag: fe9a0553-cb1c-4801-9a38-53cd60235364
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ruptura_estoque_% = divide([ruptura_estoque], [count_inventory], 0)
+		formatString: 0%;-0%;0%
+		displayFolder: Estoque
+		lineageTag: 135bd077-ce16-4e54-8308-4c1b195fde4e
+
+		changedProperty = FormatString
+
+	measure excesso_estoque_% = divide([excesso_estoque], [total_itens_distinct_estoque], 0)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Estoque
+		lineageTag: b138d714-7bba-423d-902e-796dfce599e6
+
+		changedProperty = FormatString
+
+	measure sales_quantity_average_kpi = sum('fat_inventory'[daily_average_last_90_days]) +0
+		formatString: #,0.0
+		displayFolder: Estoque
+		lineageTag: db8270b7-40da-400f-9b48-b9d5dab44497
+
+	measure Length = "*******************"
+		displayFolder: Geral
+		lineageTag: ebe43db6-d40b-41fd-8fd4-97658540a56c
+
+	measure texto_cobertura_por_dimensao = "Cobertura por " & max('Eixo X Dimensão'[Parâmetro])
+		formatString: Estoque
+		displayFolder: Geral
+		lineageTag: 106155a0-dad6-4a30-bf68-3233834fb53e
+
+	measure risco_de_ruptura_estoque = calculate(DISTINCTCOUNT('fat_inventory'[product_code]), 'fat_inventory'[inventory_classification] = "risco de ruptura")
+		formatString: 0
+		displayFolder: Estoque
+		lineageTag: 22b34df1-d6ed-45fa-8b4e-a531047e73d4
+
+	measure giro_normal_estoque = calculate(DISTINCTCOUNT('fat_inventory'[product_code]), 'fat_inventory'[inventory_classification] = "giro normal")
+		formatString: 0
+		displayFolder: Estoque
+		lineageTag: ee211f54-a70a-4148-ad07-ba21361ef18f
+
+	measure total_itens_distinct_estoque = [excesso_estoque] + [giro_normal_estoque] + [risco_de_ruptura_estoque] + [ruptura_estoque]
+		formatString: 0
+		displayFolder: Estoque
+		lineageTag: 2878b98f-27cd-4ec1-946c-f9a940fad8ad
+
+	measure texto_excesso_por_dimensao = "Excesso por " & MAX('Eixo X Dimensão'[Parâmetro])
+		displayFolder: Geral
+		lineageTag: 4e31aaf0-62a9-4f1b-af94-2f47de0f3ac2
+
+	measure texto_ruptura_por_dimensao = "Ruptura por " & max('Eixo X Dimensão'[Parâmetro])
+		displayFolder: Geral
+		lineageTag: 0d07d272-dcf7-4567-b974-d89d4205fcdb
+
+	measure average_days_on_hand_kpi = AVERAGE('fat_inventory'[coverage_using_last_90_days]) +0
+		formatString: #,0
+		displayFolder: Estoque
+		lineageTag: a36e15ef-d525-4ff9-80be-0cb3d9cd071f
+
+	measure sum_inventory_position_kpi = [sum_inventory_position] +0
+		formatString: #,0
+		displayFolder: Estoque
+		lineageTag: 3c3790c5-0862-4985-8716-ea61eb228556
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure products_quantity = DISTINCTCOUNT(fat_inventory[product_code])
+		formatString: 0
+		displayFolder: Estoque
+		lineageTag: a3f7f3b7-d45d-4201-863a-4ac2d66c3503
+
+	measure products_quantity_kpi = DISTINCTCOUNT(fat_inventory[product_code]) +0
+		formatString: #,0
+		displayFolder: Estoque
+		lineageTag: 904bda86-c725-46db-9baa-43a31c54887c
+
+	measure Profundidade = DIVIDE([sum_inventory_position_kpi],[products_quantity_kpi],0) +0
+		formatString: #,0.00
+		displayFolder: Estoque
+		lineageTag: e1b83bfb-3124-40cd-9769-da5b631b4375
+
+	measure texto_estoque_por_dimensao = "Estoque por " & max('Eixo X Dimensão'[Parâmetro])
+		displayFolder: Geral
+		lineageTag: bf490f27-ab7e-4afc-bb98-d2a46495dd32
+
+	measure count_inventory = COUNT(fat_inventory[product_code])
+		formatString: 0
+		displayFolder: Estoque
+		lineageTag: 6ae43454-1f00-4ff0-ba15-bd8efaf0de33
+
+	measure risco_ruptura_estoque_% = divide([risco_de_ruptura_estoque], [count_inventory], 0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: cbc95bcc-6300-4ce3-be79-77469a45a48b
+
+	measure Classificacao_curva =
+			
+			IF(
+			    ISINSCOPE(dim_abc_curve[abc_curve]),
+			CALCULATE(MAX(dim_abc_curve[abc_curve])
+			    ,CROSSFILTER(fat_inventory[product_code],dim_abc_curve[product_code], OneWay_LeftFiltersRight)
+			))
+		displayFolder: Estoque
+		lineageTag: 19ea9812-0c52-4698-8678-1d0355a4a932
+
+	measure sum_inventory_position = sumx(fat_inventory,[available])
+		formatString: #,0
+		displayFolder: Estoque
+		lineageTag: b1d64458-03b0-4522-b645-44de0b6b576e
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure sales_quantity_average = sum('fat_inventory'[daily_average_last_90_days])
+		formatString: #,0
+		displayFolder: Estoque
+		lineageTag: ed8b83df-4096-415a-a6bd-3a8aafb7d462
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure average_days_on_hand = AVERAGE('fat_inventory'[coverage_using_last_90_days])
+		formatString: #,0.00
+		displayFolder: Estoque
+		lineageTag: 390618eb-9c5c-4bff-847f-de1747efd4b5
+
+	measure Tooltip =
+			" "
+			// UNICHAR(127) & UNICHAR(127)
+		displayFolder: Geral
+		lineageTag: d268865a-be11-479a-a7d1-3ffff986a8ac
+
+	measure sum_reserved =
+			
+			var calculo = sumx(fat_inventory, [reserved])
+			RETURN
+			IF( calculo < 0, 0, calculo)
+		formatString: #,0
+		lineageTag: 2743c775-405e-43f7-802c-48d7c58b7a53
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure sum_reserved_kpi = [sum_reserved]+0
+		formatString: #,0
+		lineageTag: ebeda11e-3c61-4d43-91a7-d36f9b151590
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure sum_damaged = ```
+			
+			 
+			 var calculo =
+			 CALCULATE(SUMX(vw_fat_inventory_wms, vw_fat_inventory_wms[damaged]), SEARCH("millenniumbr", fat_inventory[product_code], 1, 0) > 0
+			    )
+			
+			    RETURN
+			    IF(calculo < 0,0,calculo)
+			```
+		formatString: #,0
+		lineageTag: 91b32a0f-64b6-4533-8522-4cf4e999afdb
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure sum_damaged_kpi = [sum_damaged]+0
+		formatString: #,0
+		lineageTag: c5b0d5a7-a91d-4163-9714-5fd955f9af68
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Caracter vazio' = UNICHAR(127) & UNICHAR(127)
+		lineageTag: 9f86f249-b755-48ee-83d8-4dc34accbb19
+
+	partition Medidas-17fdd38a-203e-43a4-931a-d53360efcd46 = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Coluna 1"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_ResultType = Table
+

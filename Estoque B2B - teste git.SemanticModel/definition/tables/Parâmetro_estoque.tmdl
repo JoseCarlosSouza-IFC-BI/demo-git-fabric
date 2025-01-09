@@ -1,0 +1,49 @@
+table Parâmetro_estoque
+	lineageTag: b804e595-8fe2-4d76-a063-aa4873ab8e17
+
+	column Parâmetro_estoque
+		lineageTag: 455943a7-edaf-48e0-b462-8f3c3e98be0e
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parâmetro_estoque Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'Parâmetro_estoque Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parâmetro_estoque Campos'
+		isHidden
+		lineageTag: 87bcd6b6-1d14-4f24-8aca-c3de180a9f57
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parâmetro_estoque Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parâmetro_estoque Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: d77895f3-53b4-43ed-ae9f-bc24b3c09280
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Parâmetro_estoque-0db2f12c-e922-424a-aed5-9759c174025b = calculated
+		mode: import
+		source =
+				{
+				    ("Categoria", NAMEOF('fat_inventory'[category]), 0),
+				    ("Família", NAMEOF('fat_inventory'[family]), 1),
+				    ("Marca", NAMEOF('fat_inventory'[brand]), 2)
+				}
+
+	annotation PBI_Id = 90c4524b695248ab9fa7e5a34d978847
+
