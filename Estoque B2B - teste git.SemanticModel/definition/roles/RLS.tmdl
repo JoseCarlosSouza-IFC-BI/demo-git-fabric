@@ -1,9 +1,0 @@
-role RLS
-	modelPermission: read
-
-	tablePermission vw_distributor_groups = [user_email] = USERPRINCIPALNAME()
-
-	tablePermission dim_access_control = [user_email] = USERPRINCIPALNAME()
-
-	annotation PBI_Id = a9270f804bfd4255b0b41b27a634c390
-

@@ -3,7 +3,6 @@
   "datasetReference": {
     "byPath": {
       "path": "../Estoque B2B - teste git.SemanticModel"
-    },
-    "byConnection": null
+    }
   }
 }
