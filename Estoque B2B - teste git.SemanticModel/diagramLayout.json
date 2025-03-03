@@ -4,14 +4,14 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 1431.57164058821,
-        "y": 0
+        "x": 1022.769266764323,
+        "y": 690.46157836914063
       },
       "nodes": [
         {
           "location": {
-            "x": 2360.3213230159904,
-            "y": 1356.489650468287
+            "x": 2526.9879896826569,
+            "y": 1338.1563171349535
           },
           "nodeIndex": "d_calendar",
           "nodeLineageTag": "3b4206c6-8d5c-43d9-bc30-3c6a5d13607c",
@@ -198,13 +198,13 @@
         },
         {
           "location": {
-            "x": 5584.9,
-            "y": 723.35068072868319
+            "x": 1714.8999999999996,
+            "y": 2048.3506807286831
           },
           "nodeIndex": "count_tables_log",
           "nodeLineageTag": "b26db4f9-1151-40dd-96ab-962db09dc74f",
           "size": {
-            "height": 200,
+            "height": 145,
             "width": 234
           },
           "zIndex": 0
@@ -221,10 +221,23 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1596.1690529325695,
+            "y": 640.94012986913822
+          },
+          "nodeIndex": "dim_sellers",
+          "nodeLineageTag": "87cc484e-78d9-4b42-bf83-182c1f776b27",
+          "size": {
+            "height": 257.3372689890931,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "Todas as tabelas",
-      "zoomValue": 63.287087723233959,
+      "zoomValue": 60,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,
