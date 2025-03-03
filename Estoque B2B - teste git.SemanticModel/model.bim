@@ -8,7 +8,7 @@
       },
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"Ultima Atualizacao\",\"d_calendar\",\"Medidas\",\"RangeStart\",\"RangeEnd\",\"fat_inventory\",\"dim_abc_curve\",\"Medidas Produto\",\"dim_distributors\",\"dashboards_url\",\"dim_access_control\",\"vw_distributor_groups\",\"count_tables_log\",\"ambiente_conexao\",\"hostname\",\"http_path_master_principal\",\"http_path_user_security_principal\",\"http_path_marketing_principal\",\"http_path_query_principal\",\"vw_fat_inventory_wms\"]"
+        "value": "[\"Ultima Atualizacao\",\"d_calendar\",\"Medidas\",\"RangeStart\",\"RangeEnd\",\"fat_inventory\",\"dim_abc_curve\",\"Medidas Produto\",\"dim_distributors\",\"dashboards_url\",\"dim_access_control\",\"vw_distributor_groups\",\"count_tables_log\",\"ambiente_conexao\",\"hostname\",\"http_path_master_principal\",\"http_path_user_security_principal\",\"http_path_marketing_principal\",\"http_path_query_principal\",\"vw_fat_inventory_wms\",\"dim_sellers\"]"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -70600,6 +70600,14 @@
         "toCardinality": "many",
         "toColumn": "ean",
         "toTable": "fat_inventory"
+      },
+      {
+        "name": "84c73d6f-1145-94ef-4153-c1436ccbb035",
+        "fromColumn": "business_model",
+        "fromTable": "dim_distributors",
+        "toCardinality": "many",
+        "toColumn": "business_model",
+        "toTable": "dim_sellers"
       }
     ],
     "roles": [
@@ -71536,23 +71544,23 @@
             "mode": "import",
             "source": {
               "expression": [
-                "{",
-                "    (\"Categoria produto\", NAMEOF('fat_inventory'[category]), 0, \"Produto\"),",
-                "    // (\"Produto\",NAMEOF( 'dim_products'[name]), 1, \"Produto\"),",
-                "    (\"Subcategoria\", NAMEOF('fat_inventory'[sub_category]),2, \"Produto\"),",
-                "    //(\"Classificação ABC\", NAMEOF('fat_inventory'[abc_classification]), 3, \"Produto\"),",
-                "    (\"Familia\", NAMEOF('fat_inventory'[family]), 4, \"Produto\"),",
-                "    (\"Marca\",NAMEOF( 'fat_inventory'[brand]), 5, \"Produto\")",
-                "    // (\"Categoria Loja\", NAMEOF('d_distribution_nodes'[category]), 6, \"Distribuidor\"),",
-                "    // (\"Loja\",NAMEOF( 'd_distribution_nodes'[name]), 7, \"Distribuidor\"),",
-                "    // (\"Segmento\", NAMEOF('d_distribution_nodes'[segment]), 8, \"Distribuidor\"),",
-                "    // (\"Canal\", NAMEOF('d_distribution_nodes'[channel]), 9, \"Distribuidor\"),",
-                "    // (\"Estado\", NAMEOF('d_distribution_nodes'[uf]), 10, \"Distribuidor\"),",
-                "    // (\"Cidade\", NAMEOF('d_distribution_nodes'[city]), 11, \"Distribuidor\"),",
-                "    // (\"Diário\", NAMEOF('d_calendar'[id]),6, \"Calendario\"),",
-                "    // (\"Semanal\", NAMEOF('d_calendar'[week_year_unique]), 7, \"Calendario\"),",
-                "    // (\"Mensal\", NAMEOF('d_calendar'[month_year_name]),8, \"Calendario\")",
-                "",
+                "{\r",
+                "    (\"Categoria produto\", NAMEOF('fat_inventory'[category]), 0, \"Produto\"),\r",
+                "    // (\"Produto\",NAMEOF( 'dim_products'[name]), 1, \"Produto\"),\r",
+                "    (\"Subcategoria\", NAMEOF('fat_inventory'[sub_category]),2, \"Produto\"),\r",
+                "    //(\"Classificação ABC\", NAMEOF('fat_inventory'[abc_classification]), 3, \"Produto\"),\r",
+                "    (\"Familia\", NAMEOF('fat_inventory'[family]), 4, \"Produto\"),\r",
+                "    (\"Marca\",NAMEOF( 'fat_inventory'[brand]), 5, \"Produto\")\r",
+                "    // (\"Categoria Loja\", NAMEOF('d_distribution_nodes'[category]), 6, \"Distribuidor\"),\r",
+                "    // (\"Loja\",NAMEOF( 'd_distribution_nodes'[name]), 7, \"Distribuidor\"),\r",
+                "    // (\"Segmento\", NAMEOF('d_distribution_nodes'[segment]), 8, \"Distribuidor\"),\r",
+                "    // (\"Canal\", NAMEOF('d_distribution_nodes'[channel]), 9, \"Distribuidor\"),\r",
+                "    // (\"Estado\", NAMEOF('d_distribution_nodes'[uf]), 10, \"Distribuidor\"),\r",
+                "    // (\"Cidade\", NAMEOF('d_distribution_nodes'[city]), 11, \"Distribuidor\"),\r",
+                "    // (\"Diário\", NAMEOF('d_calendar'[id]),6, \"Calendario\"),\r",
+                "    // (\"Semanal\", NAMEOF('d_calendar'[week_year_unique]), 7, \"Calendario\"),\r",
+                "    // (\"Mensal\", NAMEOF('d_calendar'[month_year_name]),8, \"Calendario\")\r",
+                "\r",
                 "}"
               ],
               "type": "calculated"
@@ -84882,10 +84890,10 @@
             "mode": "import",
             "source": {
               "expression": [
-                "{",
-                "    (\"Categoria\", NAMEOF(fat_inventory[category]), 0),",
-                "    (\"Subcategoria\", NAMEOF(fat_inventory[sub_category]), 1)",
-                "    // (\"90 dias\", NAMEOF(fat_inventory[classification_sales_90_days]), 2)",
+                "{\r",
+                "    (\"Categoria\", NAMEOF(fat_inventory[category]), 0),\r",
+                "    (\"Subcategoria\", NAMEOF(fat_inventory[sub_category]), 1)\r",
+                "    // (\"90 dias\", NAMEOF(fat_inventory[classification_sales_90_days]), 2)\r",
                 "}"
               ],
               "type": "calculated"
@@ -85288,9 +85296,9 @@
             "mode": "import",
             "source": {
               "expression": [
-                "{",
-                "    (\"Risco de ruptura\", NAMEOF('Medidas'[risco_ruptura_estoque_%]), 0),",
-                "    (\"Ruptura\", NAMEOF('Medidas'[ruptura_estoque_%]), 1)",
+                "{\r",
+                "    (\"Risco de ruptura\", NAMEOF('Medidas'[risco_ruptura_estoque_%]), 0),\r",
+                "    (\"Ruptura\", NAMEOF('Medidas'[ruptura_estoque_%]), 1)\r",
                 "}"
               ],
               "type": "calculated"
@@ -85756,10 +85764,10 @@
             "mode": "import",
             "source": {
               "expression": [
-                "{",
-                "    (\"Categoria\", NAMEOF('fat_inventory'[category]), 0),",
-                "    (\"Família\", NAMEOF('fat_inventory'[family]), 1),",
-                "    (\"Marca\", NAMEOF('fat_inventory'[brand]), 2)",
+                "{\r",
+                "    (\"Categoria\", NAMEOF('fat_inventory'[category]), 0),\r",
+                "    (\"Família\", NAMEOF('fat_inventory'[family]), 1),\r",
+                "    (\"Marca\", NAMEOF('fat_inventory'[brand]), 2)\r",
                 "}"
               ],
               "type": "calculated"
@@ -86280,6 +86288,224 @@
                 "    #\"Outras Colunas Removidas\" = Table.SelectColumns(#\"Linhas Filtradas\",{\"product_id\", \"source_location_code\", \"product_code\", \"data_source\", \"damaged\", \"sku\", \"ean\", \"name\", \"brand\", \"family\", \"distributor_company_name\"})",
                 "in",
                 "    #\"Outras Colunas Removidas\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_sellers",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "code",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "57457397-3689-4a57-910d-6e98c20e2b1b",
+            "sourceColumn": "code",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "96d201bb-ebec-43ee-97d7-2ec78216c7db",
+            "sourceColumn": "name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "display_name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b1b8113a-ed9b-41bb-99c2-eaa76c1c6ef4",
+            "sourceColumn": "display_name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "company_name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3a51b628-923e-4a72-af6a-604a34c6b79a",
+            "sourceColumn": "company_name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "business_model",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "6d55a013-658b-430e-a9ec-5223fb24e34c",
+            "sourceColumn": "business_model",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "role",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4dc0501e-b314-4c3b-8542-957a880cd0f6",
+            "sourceColumn": "role",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ece8692a-ae53-4599-8d08-f7b41af3ca66",
+            "sourceColumn": "type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "status",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7907e103-dd1b-444e-b776-ca356e4048e8",
+            "sourceColumn": "status",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3293f0ba-1f90-4ec0-942f-99aa5c00377e",
+            "sourceColumn": "id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "tenant_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "11271284-1ed4-4146-94bc-c5ab30b01388",
+            "sourceColumn": "tenant_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "tenant",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9678e040-9eac-425f-ac26-ba4cbe9fe0b3",
+            "sourceColumn": "tenant",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "data_source",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d32aff79-6a31-4380-96dd-29da294b4635",
+            "sourceColumn": "data_source",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "business_model_internal",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d7aa18d7-d732-4c32-8626-e070772d150e",
+            "sourceColumn": "business_model_internal",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "management_business_model",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d97eb41c-65c8-431d-8fbb-04d030f95fea",
+            "sourceColumn": "management_business_model",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "87cc484e-78d9-4b42-bf83-182c1f776b27",
+        "partitions": [
+          {
+            "name": "dim_sellers",
+            "mode": "import",
+            "queryGroup": "Dim",
+            "source": {
+              "expression": [
+                "let",
+                "    Fonte = Databricks.Catalogs(#\"hostname\", #\"http_path_master_principal\", [Catalog=null, Database=null, EnableAutomaticProxyDiscovery=null]),",
+                "    prd_05_infracommerce_warehouse_Database = Fonte{[Name=\"prd_05_infracommerce_warehouse\",Kind=\"Database\"]}[Data],",
+                "    master_data_context_Schema = prd_05_infracommerce_warehouse_Database{[Name=\"master_data_context\",Kind=\"Schema\"]}[Data],",
+                "    dim_sellers_Table = master_data_context_Schema{[Name=\"dim_sellers\",Kind=\"Table\"]}[Data],",
+                "    #\"Filtered Rows\" = Table.SelectRows(dim_sellers_Table, each ([business_model_internal] = \"B2B\"))",
+                "in",
+                "    #\"Filtered Rows\""
               ],
               "type": "m"
             }
